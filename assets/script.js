@@ -20,9 +20,9 @@ $(function () {
     $(function () {
         function applyTimeClass() {
             var currentHour = new Date().getHours();
+            console.log(currentHour);
             $(".time-block").each(function () {
-                var blockId = $(this).attr("id").split("block")[1];
-                var blockHour = parseInt(blockId);
+                var blockHour = parseInt($(this).attr("id").replace("hour-", ""));
                 if (blockHour < currentHour) {
                     $(this).addClass("past").removeClass("present future");
                 } else if (blockHour === currentHour) {
@@ -30,7 +30,7 @@ $(function () {
                 } else {
                     $(this).addClass("future").removeClass("past present"); 
                 }
-                var savedInput = localStorage.getItem("input" + blockId);
+                var savedInput = localStorage.getItem("input" + blockHour);
                 if (savedInput !== null) {
                     $(this).find("input").val(savedInput);
                 }
@@ -55,7 +55,7 @@ $(function () {
     // attribute of each time-block be used to do this?
     
     function displayCurrentDate() {
-        var currentDate = dayjs().format('dddd, MMM D, YYYY');
+        var currentDate = dayjs().format('dddd, MMM D, YYYY');147
         $("#current-date").text("Current Date: " + currentDate);
     }
     displayCurrentDate();
