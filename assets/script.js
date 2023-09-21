@@ -55,10 +55,8 @@ $(function () {
     // attribute of each time-block be used to do this?
     
     function displayCurrentDate() {
-        var currentDate = new Date();
-        var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        var formattedDate = currentDate.toLocaleDateString('en-US', options);
-        $("#current-date").text("Current Date: " + formattedDate);
+        var currentDate = dayjs().format('dddd, MMM D, YYYY');
+        $("#current-date").text("Current Date: " + currentDate);
     }
     displayCurrentDate();
     // TODO: Add code to display the current date in the header of the page.
